@@ -1,0 +1,25 @@
+Segue o codigo:
+
+//Obter as informacoes dos pontos do transferir_pontos
+
+$sql1 = mysql_query("select * from usuarios where usuario='$usuario' && pontos>=$pontos && usuario='$usuario' && senha='$senha'"); // alterar campos de acordo com sua tabela
+
+$rows1 = mysql_num_rows($sql1); // verificar se existe o usuario e os pontos disponiveis na conta
+
+if($rows1 == 1) { $linha1 = mysql_fetch_array($sql1); // obtem as informacoes da consulta
+
+$email = $linha1["email"]; mysql_query("update usuarios set pontos = pontos-$pontos where usuario='$usuario' && usuario='$usuario' && senha='$senha'"); // alterar campos de acordo com sua tabela
+
+mysql_query("update usuarios set pontos = pontos+$pontos where usuario='$receber_pontos'"); // alterar campos de acordo com sua tabela
+
+mysql_query("update usuarios set
+
+transferir_pontos = '$transferir_pontos', receber_pontos = '$receber_pontos',
+
+where usuario='$usuario'"); // alterar campos de acordo com sua tabela
+
+mysql_query("update usuarios set
+
+transferir_pontos = '$transferir_pontos', receber_pontos = '$receber_pontos',
+
+where usuario='$receber_pontos'"); // alterar campos de acordo com sua tabela
